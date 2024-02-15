@@ -1,20 +1,40 @@
-def tester(sort_type):
+import json, urllib.request
 
-    y = [{'year':2000, 'size':4, 'landed':'down'},{'year':1600, 'size':200, 'landed':'down'}]
+def tester(sort_type:str):
+
+    f = [{'year':'2000', 'size':'4', 'landed':'down'},{'year':'1600', 'size':'200', 'landed':'down'}]
+
+    for dicts in f:
+        for keys in dicts:
+
+            try:
+                dicts[keys] = int(dicts[keys])
+            except:
+                dicts[keys] = str(dicts[keys])
+
+    print(sorted(f, key = lambda x:x[sort_type]))
+
+def websearch():
+
+    global x
     
-    if sort_type == 'year':
-        print(sorted(y, key = lambda x:x['year']))
-    elif sort_type == 'size':
-        print(sorted(y, key = lambda x:x['size']))
-    elif sort_type == 'landed':
-        print(sorted(y, key = lambda x:x['landed']))
-    else:
-        print('Valid sort options are: year, size, landed.')
+    x = json.load(urllib.request.urlopen('https://data.nasa.gov/resource/y77d-th95.json'))
 
+    for dicts in x:
+        for keys in dicts:
+            print(keys)
 
+def puller(sort:str):
 
-def puller():
+    for dicts in x:
+        for keys in dicts:
+            try:
+                dicts[keys] = int(float(dicts[keys]))
+            except:
+                dicts[keys] = str(dicts[keys])
+
+    z = sorted(x, key = lambda x:x[sort])
+
+    for out in range(10):
+        print(z[out])
     
-
-    
-    print()
