@@ -18,3 +18,4 @@ some problems with certain keys in some datasets, but it is being looked at).
 >[!NOTE]
 >The `websearch` function must be executed before `puller`, otherwise it will not function.
 >All arguments must be written in quotes, otherwise it will not recognize the string.
+>Works with all "data.nasa.gov" `.json` files
